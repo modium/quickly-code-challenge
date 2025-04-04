@@ -46,29 +46,61 @@ const Login = () => {
   };
 
   return (
-    <div>
-      <h1>Login</h1>
-      {loading ? <Loader /> : null}
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="email">Email</label>
-        <input
-          type="email"
-          id="email"
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="Email"
-          value={email}
-        />
-        {errors.email && <p style={{ color: "red" }}>{errors.email}</p>}
-        <label htmlFor="password">Password</label>
-        <input
-          type="password"
-          id="password"
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="Password"
-          value={password}
-        />
-        {errors.password && <p style={{ color: "red" }}>{errors.password}</p>}
-        <button disabled={loading}>Login</button>
+    <div className="w-full max-w-xs">
+      <form
+        className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+        onSubmit={handleSubmit}
+      >
+        <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">
+          Login
+        </h2>
+        <div className="mb-6">
+          <label
+            className="block text-gray-700 text-sm font-bold mb-2"
+            htmlFor="email"
+          >
+            Email
+          </label>
+          <input
+            type="email"
+            id="email"
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Email"
+            value={email}
+          />
+          {errors.email && (
+            <p className="text-red-500 text-xs italic">{errors.email}</p>
+          )}
+        </div>
+        <div className="mb-6">
+          <label
+            className="block text-gray-700 text-sm font-bold mb-2"
+            htmlFor="password"
+          >
+            Password
+          </label>
+          <input
+            type="password"
+            id="password"
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Password"
+            value={password}
+          />
+          {errors.password && (
+            <p className="text-red-500 text-xs italic">{errors.password}</p>
+          )}
+        </div>
+        <div className="flex items-center justify-between">
+          <button
+            className="bg-blue-500 hover:bg-blue-700 text-white w-full font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            disabled={loading}
+          >
+            Login
+          </button>
+        </div>
+        {loading ? <Loader /> : null}
       </form>
     </div>
   );

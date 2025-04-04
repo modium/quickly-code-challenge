@@ -57,35 +57,45 @@ export default function PaymentDateChecker() {
   }, [invoiceDueDate, payCycleDay]);
 
   return (
-    <div>
-      <h2>Payment Date Checker</h2>
-      <div>
+    <div className="bg-white p-8 rounded-lg shadow-lg">
+      <h2 className="text-2xl font-bold text-gray-900 mb-6">
+        Payment Date Checker
+      </h2>
+      <div className="space-y-6">
         <div>
-          <label>Invoice Due Date</label>
-          <div>
+          <label className="block text-sm font-medium text-gray-700 mb-2">
+            Invoice Due Date
+          </label>
+          <div className="relative">
             <input
               type="date"
               value={invoiceDueDate}
               onChange={(e) => setInvoiceDueDate(e.target.value)}
+              className="block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
             />
           </div>
         </div>
         <div>
-          <label>Monthly Payment Day</label>
-          <div>
+          <label className="block text-sm font-medium text-gray-700 mb-2">
+            Monthly Payment Day
+          </label>
+          <div className="relative">
             <input
               type="date"
               value={payCycleDay}
               onChange={(e) => setPayCycleDay(e.target.value)}
+              className="block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
             />
           </div>
         </div>
-        {error && <p>{error}</p>}
+        {error && <p className="text-red-500 text-xs italic">{error}</p>}
         {paymentDate && !error && (
-          <div>
-            <p>
+          <div className="p-6 bg-blue-50 rounded-lg border border-blue-100">
+            <p className="text-blue-800">
               Your invoice pay date will be
-              <span>{paymentDate}</span>
+              <span className="block mt-2 text-xl font-bold">
+                {paymentDate}
+              </span>
             </p>
           </div>
         )}
