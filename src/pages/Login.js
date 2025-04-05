@@ -7,7 +7,7 @@ const Login = () => {
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [errors, setErrors] = useState([]);
+  const [errors, setErrors] = useState({});
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -17,8 +17,7 @@ const Login = () => {
     setErrors(errors);
 
     if (Object.keys(errors).length === 0) {
-      setLoading(true);
-      onLogin(email, password);
+      onLogin(setLoading, email, password);
     }
   };
 

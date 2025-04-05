@@ -11,7 +11,9 @@ const AuthProvider = ({ children }) => {
   const location = useLocation();
   const [token, setToken] = useState("");
 
-  const handleLogin = async (email, password) => {
+  const handleLogin = async (setLoading, email, password) => {
+    setLoading(true);
+
     await fetch("https://api-dev.quicklyinc.com/auth/login", {
       method: "POST",
       headers: {
@@ -24,13 +26,22 @@ const AuthProvider = ({ children }) => {
     })
       .then((response) => response.json())
       .then((json) => {
+        setLoading(false);
+
+        const success = json.success;
+
+        if (!success) {
+          return alert("Email and/or password is incorrect");
+        }
+
         const token = json.token;
         setToken(token);
         const origin = location.state?.from?.pathname || "/profile";
         navigate(origin);
       })
       .catch((error) => {
-        alert("Invalid credentials");
+        setLoading(false);
+        alert("An error occurred while logging in");
         console.error(error);
       });
   };
